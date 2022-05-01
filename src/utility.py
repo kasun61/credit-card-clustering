@@ -1,4 +1,6 @@
 import numpy as np
+import pandas as pd
+from sklearn.decomposition import PCA
 
 
 def impute_mean(df):
@@ -81,9 +83,30 @@ def log_transform(df, cols):
         df (pandas dataframe): dataframe with log transformed columns
     
     """
-    for col in cols[1:]: # skipping first column for index
+    for col in cols: # skipping first column for index
         try:
             df[col] = np.log(1 + df[col])
         except:
             print(f'{col} unsuccessful')
     return df
+
+def apply_pca (data, n_components = 2):
+    """
+    Function to apply PCA to reduce dimensions
+    
+    Args:
+        data [dataframe]: data file for user attributes
+        n_components [int]: number of components in PCA, default as 2
+    Returns:
+        pca_df [dataframe]: data file with principal components
+        pca_fit [dataframe]: fitted PCA
+    """
+
+    pca = PCA(n_components = n_components)     #PCA
+    pca_fit = pca.fit_transform(data) #Reducing the dimensions of the data
+    pca_df = pd.DataFrame(pca_fit,  #Dataframe for first 2 PCs
+                            columns = ['PC1', 'PC2'],
+                            index=data.index.copy())  # set yara_user_id as index
+                            
+
+    return pca_df, pca
