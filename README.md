@@ -46,6 +46,6 @@ deactivate # deactivate environment
 
 Install all the necessary dependencies  
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 

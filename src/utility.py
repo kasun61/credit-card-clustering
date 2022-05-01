@@ -3,9 +3,9 @@ import pandas as pd
 from sklearn.decomposition import PCA
 
 
-def impute_mean(df):
+def impute_median(df):
     """
-    Function to impute missing values with mean
+    Function to impute missing values with median
 
     Args:
         df (pandas dataframe): dataframe
@@ -20,14 +20,35 @@ def impute_mean(df):
                     .reset_index()) # reset index
     null_val.columns = ['attribute','count'] # rename columns
 
-    # iterate through df to impute mean
+    # iterate through df to impute median
     for index,row in null_val.iterrows():
         if row['count'] > 0: # if null values exist
             print(f'{row["attribute"]} has {row["count"]} null values') # print attribute and count
-            df.loc[(df[row['attribute']].isnull()==True),row['attribute']]=df[row['attribute']].mean() # impute mean
+            df.loc[(df[row['attribute']].isnull()==True),row['attribute']]=df[row['attribute']].median() # impute median
         else:
             continue
     return df
+
+def log_transform(df, cols):
+    """
+    Function for Log transformation
+
+    Args:
+        df (pandas dataframe): dataframe
+        cols (list): list of columns to be transformed
+
+    Returns:
+        df (pandas dataframe): dataframe with log transformed columns
+    
+    """
+    for col in cols:
+        try:
+            df[col] = np.log(1 + df[col])
+        except:
+            print(f'{col} unsuccessful')
+    
+    return df
+
 
 ## Outlier Removal 
 def iqr_outlier_removal(df,attribute_list):
@@ -71,24 +92,6 @@ def iqr_outlier_removal(df,attribute_list):
     return outliers_removed
 
 
-def log_transform(df, cols):
-    """
-    Function for Log transformation
-
-    Args:
-        df (pandas dataframe): dataframe
-        cols (list): list of columns to be transformed
-
-    Returns:
-        df (pandas dataframe): dataframe with log transformed columns
-    
-    """
-    for col in cols: # skipping first column for index
-        try:
-            df[col] = np.log(1 + df[col])
-        except:
-            print(f'{col} unsuccessful')
-    return df
 
 def apply_pca (data, n_components = 2):
     """
