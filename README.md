@@ -25,3 +25,27 @@ PAYMENTS : Amount of Payment done by user
 MINIMUM_PAYMENTS : Minimum amount of payments made by user  
 PRCFULLPAYMENT : Percent of full payment paid by user  
 TENURE : Tenure of credit card service for user  
+
+## Repository Structure
+
+- [data](data): contains all the data files
+- [notebooks](notebooks): contains jupyter notebooks used for exploration, explanation and visualisation
+- [source files](src): source scripts for modules
+
+
+## Installation and Usage
+
+Set up your own environment  
+```
+python3 -m venv .venv
+
+source .venv/bin/activate # activate environment
+
+deactivate # deactivate environment
+```
+
+Install all the necessary dependencies  
+```
+pip install requirements.txt
+```
+
