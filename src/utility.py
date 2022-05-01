@@ -1,4 +1,31 @@
+import numpy as np
 
+
+def impute_mean(df):
+    """
+    Function to impute missing values with mean
+
+    Args:
+        df (pandas dataframe): dataframe
+
+    Returns:
+        df (pandas dataframe): dataframe with missing values imputed
+    
+    """
+    null_val = (df.isnull() # check for null values
+                    .sum() # sum of null values
+                    .sort_values(ascending=False) # sort values in descending order
+                    .reset_index()) # reset index
+    null_val.columns = ['attribute','count'] # rename columns
+
+    # iterate through df to impute mean
+    for index,row in null_val.iterrows():
+        if row['count'] > 0: # if null values exist
+            print(f'{row["attribute"]} has {row["count"]} null values') # print attribute and count
+            df.loc[(df[row['attribute']].isnull()==True),row['attribute']]=df[row['attribute']].mean() # impute mean
+        else:
+            continue
+    return df
 
 ## Outlier Removal 
 def iqr_outlier_removal(df,attribute_list):
