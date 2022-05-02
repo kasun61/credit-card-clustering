@@ -64,7 +64,16 @@ def iqr_outlier_removal(df,attribute_list):
     
     """
     def identify_outlier(df,column):
-        """Identify outlers via IQR"""
+        """
+        Function to identify outlers via IQR
+        
+        Args:
+            df (pandas dataframe): dataframe
+            column (str): column to be checked for outliers
+
+        Returns:
+            ls (list): list of indices for outliers
+        """
         Q1 = df[column].quantile(0.25)
         Q3 = df[column].quantile(0.75)
         IQR = Q3-Q1
@@ -74,7 +83,17 @@ def iqr_outlier_removal(df,attribute_list):
         return ls 
 
     def extract_outliers (df, attribute_list):
-        """Function to extract identifed outliers"""
+        """
+        Function to extract identifed outliers
+        
+        Args:
+            df (pandas dataframe): dataframe
+            attribute_list (list): list of columns to be transformed
+
+        Returns:
+            outliers (list): list of outliers
+        
+        """
         outliers = [] #Initialise empty list
 
         for column in df[attribute_list].columns:
@@ -82,7 +101,16 @@ def iqr_outlier_removal(df,attribute_list):
         return outliers
         
     def remove_outliers(df,ls):
-        "Remove outliers"
+        """
+        Function to remove outliers
+
+        Args:
+            df (pandas dataframe): dataframe
+            ls (list): list of outliers
+
+        Returns:
+            outliers_removed (pandas dataframe): dataframe with outliers removed
+        """
         ls = sorted(set(ls))
         df = df.drop(ls)
         return df
@@ -100,6 +128,7 @@ def apply_pca (data, n_components = 2):
     Args:
         data [dataframe]: data file for user attributes
         n_components [int]: number of components in PCA, default as 2
+
     Returns:
         pca_df [dataframe]: data file with principal components
         pca_fit [dataframe]: fitted PCA
