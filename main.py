@@ -1,12 +1,12 @@
+### main file runs the execution script for the clustering pipeline. 
+
 import pandas as pd
 
 from src.executor import executor
 
 def main(df):
-    data_preprocessed = preprocessing(df)
-    return data_preprocessed
-
-
+    execute_clustering = executor(df) # execute clustering
+    return execute_clustering
 
 
 if __name__ == "__main__":

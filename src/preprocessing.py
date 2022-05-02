@@ -1,6 +1,6 @@
 import pandas as pd
 
-from utility import iqr_outlier_removal, log_transform, impute_median, apply_pca
+from .utility import iqr_outlier_removal, log_transform, impute_median, apply_pca
 
 def preprocessing (df):
 
