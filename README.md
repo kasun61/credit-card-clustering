@@ -26,11 +26,13 @@ MINIMUM_PAYMENTS : Minimum amount of payments made by user
 PRCFULLPAYMENT : Percent of full payment paid by user  
 TENURE : Tenure of credit card service for user  
 
-## Repository Structure
+## Repository Structure and Files
 
 - [data](data): contains all the data files
 - [notebooks](notebooks): contains jupyter notebooks used for exploration, explanation and visualisation
 - [source files](src): source scripts for modules
+- [main pipeline](main.py): run this script to execute the entire clustering pipeline. See below on usage.
+- [dependencies](requirements.txt): install the dependencies into your environment to replicate it. See below on installation.
 
 
 ## Installation and Usage
@@ -47,5 +49,15 @@ deactivate # deactivate environment
 Install all the necessary dependencies  
 ```
 pip install -r requirements.txt
+```
+
+Execute the files
+```
+# execute entire pipeline
+python3 main.py
+
+# execute singular files
+python3 src/preprocessing.py
+
 ```
 
