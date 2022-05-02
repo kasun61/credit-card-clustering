@@ -2,7 +2,7 @@ import pandas as pd
 
 from .utility import iqr_outlier_removal, log_transform, impute_median, apply_pca
 
-def preprocessing (df):
+def preprocessing (df, n_components=2):
 
     data = df.set_index(['CUST_ID']) # set index to CUST_ID
     
@@ -18,7 +18,7 @@ def preprocessing (df):
     attribute_list = [ele for ele in list(df_log_transformed.columns) if ele not in unwanted_ele] # removing unwanted attributes
     df_without_outliers = iqr_outlier_removal(df_log_transformed,attribute_list) # remove outliers
 
-    data_pca, pca = apply_pca(df_without_outliers)
+    data_pca, pca = apply_pca(df_without_outliers, n_components)
 
     data_pca.to_csv("data/data_preprocessed.csv")
 
@@ -27,4 +27,4 @@ def preprocessing (df):
 
 if __name__ == "__main__":
     df = pd.read_csv('data/CC_GENERAL.csv') # read data
-    preprocessing(df)
+    preprocessing(df,0.95)
