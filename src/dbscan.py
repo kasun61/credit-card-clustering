@@ -3,9 +3,11 @@ import numpy as np
 from sklearn.cluster import DBSCAN
 from sklearn import metrics
 from sklearn.neighbors import NearestNeighbors
-from matplotlib.pyplot import figure
+# from matplotlib.pyplot import figure
 import matplotlib.pyplot as plt
 from kneed import KneeLocator
+
+from .utility import merge_cluster_labels
 
 class dbscan_model:
     def __init__ (self,data):
@@ -96,5 +98,9 @@ if __name__ == "__main__":
     # define epsilon
     eps = 0.1
     dbscan_model = dbscan_model(df)
-    cluster_labels = dbscan_model.dbscan_model(eps, MinPts)
+    cluster_labels,labels = dbscan_model.dbscan_model(eps, MinPts)
     optimal_eps = dbscan_model.search_optimal_minpts(MinPts)
+
+    data_merged = merge_cluster_labels(df, cluster_labels)
+
+    print(data_merged.head())

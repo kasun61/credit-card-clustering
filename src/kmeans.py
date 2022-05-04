@@ -3,10 +3,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_score
+from .utility import merge_cluster_labels
 
 
 class kmeans_model:
-    """ Class KMeans """
     def __init__ (self, data):
         self.data = data
 
@@ -30,6 +30,7 @@ class kmeans_model:
         plt.title('Elbow method')
         plt.xlabel('Number of Clusters')
         plt.ylabel('WCSS')
+        # plt.show()
 
         return self.kmeans_models
         
@@ -58,13 +59,18 @@ class kmeans_model:
         Function to execute the model with optimal parameters
 
         Returns:
+            data_clusters [DataFrame]: optimal model with labels 
             optimal_kmeans [KMeans]: optimal KMeans model
         
         """
         optimal_kmeans = KMeans(n_clusters=self.optimal_score['silhoutte_score'], random_state=23).fit(self.data)
 
+        data_clusters = self.data.copy() # copy data
+        data_clusters['cluster'] = optimal_kmeans.labels_ # add cluster column
+
+        
         print('Silhoutte score of our model is ' + str(silhouette_score(self.data, optimal_kmeans.labels_)))
-        return optimal_kmeans
+        return data_clusters, optimal_kmeans
 
 if __name__ == "__main__":
     df = pd.read_csv('data/data_preprocessed.csv').set_index('CUST_ID') # read data
@@ -74,4 +80,8 @@ if __name__ == "__main__":
 
     optimal_clusters = kmeans.search_optimal_clusters() # search for optimal number of clusters
 
-    kmeans.optimal_model()
+    cluster_labels, optimal_kmeans = kmeans.optimal_model() # execute optimal model
+
+    data_merged = merge_cluster_labels(df, cluster_labels) # merge cluster labels with data
+
+    print(data_merged.head())

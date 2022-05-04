@@ -142,3 +142,22 @@ def apply_pca (data, n_components = 2):
                             
 
     return pca_df, pca
+
+def merge_cluster_labels (data, cluster_labels):
+    """
+    Function to merge cluster labels
+
+    Args:
+        data: dataframe with cluster labels
+        cluster_labels: cluster labels
+
+    Returns:
+        data_merged: dataframe with merged cluster labels
+        
+    """
+    # merge cluster labels
+    data_merged = pd.merge(data, cluster_labels.drop(['PC1','PC2'],axis=1), left_index=True, right_index=True,how='left')
+
+    data_merged['cluster'] = data_merged['cluster'].fillna(-1) # fill nan with 0
+    
+    return data_merged
