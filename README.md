@@ -53,11 +53,18 @@ pip install -r requirements.txt
 
 Execute the files
 ```
-# execute entire pipeline
+# execute entire pipeline with default model
 python3 main.py
 
+# execute entire pipeline with using DBSCAN
+python3 main.py --model=dbscan
+
 # execute singular files
-python3 src/preprocessing.py
+python3 -m src.preprocessing
 
 ```
 
+For more help options, simply run `--help` option
+```
+python3 main.py --help
+```
