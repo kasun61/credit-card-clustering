@@ -60,7 +60,7 @@ python3 main.py
 python3 main.py --model=dbscan
 ```
 
-If you need to execute specific scripts in the `/src` directory, the commands will be somewhat verbose but this is due to the usage of relative imports in each of the source scripts. you will have to run it using `-m` with an example below. Read [thread](https://stackoverflow.com/questions/16981921/relative-imports-in-python-3) for more details. 
+If you need to execute specific scripts in the `/src` directory, the commands will be somewhat verbose but this is due to the usage of relative imports in each of the source scripts. You will have to run it using `-m`, refer below for an example. Read [thread](https://stackoverflow.com/questions/16981921/relative-imports-in-python-3) for more details. 
 ```
 python3 -m src.preprocessing
 ```
@@ -68,4 +68,9 @@ python3 -m src.preprocessing
 For more help options, simply run `--help` option
 ```
 python3 main.py --help
+Usage: main.py [OPTIONS]
+
+Options:
+  --model TEXT  Clustering Model to be used. Options: <kmeans> or <dbscan>.
+  --help        Show this message and exit.
 ```
