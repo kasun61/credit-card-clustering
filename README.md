@@ -33,6 +33,7 @@ TENURE : Tenure of credit card service for user
 - [source files](src): source scripts for modules
 - [main pipeline](main.py): run this script to execute the entire clustering pipeline. See below on usage.
 - [dependencies](requirements.txt): install the dependencies into your environment to replicate it. See below on installation.
+- [Configurations](config.yml): Default configurations are stored in this yaml file. To run the pipeline with customised configurations, simply spin up a new yaml file with your configs and run the pipeline accordingly. See below on usage
 
 
 ## Installation and Usage
@@ -56,8 +57,11 @@ Execute the files
 # execute entire pipeline with default model
 python3 main.py
 
-# execute entire pipeline with using DBSCAN
+# execute entire pipeline using DBSCAN
 python3 main.py --model=dbscan
+
+# execute entire pipeline using another config file and DBSCAN
+python3 main.py another_config.yml --model=dbscan 
 ```
 
 If you need to execute specific scripts in the `/src` directory, the commands will be somewhat verbose but this is due to the usage of relative imports in each of the source scripts. You will have to run it using `-m`, refer below for an example. Read [thread](https://stackoverflow.com/questions/16981921/relative-imports-in-python-3) for more details. 
