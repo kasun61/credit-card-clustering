@@ -13,7 +13,7 @@ class dbscan_model:
     def __init__ (self,data):
         self.data = data
         
-    def dbscan_model(self, eps, min_samples):
+    def dbscan_model(self, min_samples, eps=0.1):
         """
         Function to run DBSCAN
 
@@ -25,13 +25,14 @@ class dbscan_model:
             labelled_data (pandas dataframe): dataframe with labels
             self.labels (array): array of labels
         """
+        print(f'Running DBSCAN with epsilon: {eps} and min_samples: {min_samples}')
 
         X = self.data.values
         db = DBSCAN(eps=eps, min_samples=min_samples).fit(X)
         core_samples_mask = np.zeros_like(db.labels_, dtype=bool)
         core_samples_mask[db.core_sample_indices_] = True
         self.labels = db.labels_
-        
+                
         n_clusters_ = len(set(self.labels)) - (1 if -1 in self.labels else 0)
         n_noise_ = list(self.labels).count(-1)
         print('Estimated number of clusters: %d' % n_clusters_)
@@ -98,7 +99,7 @@ if __name__ == "__main__":
     # define epsilon
     eps = 0.1
     dbscan_model = dbscan_model(df)
-    cluster_labels,labels = dbscan_model.dbscan_model(eps, MinPts)
+    cluster_labels,labels = dbscan_model.dbscan_model(eps=eps, min_samples=MinPts)
     optimal_eps = dbscan_model.search_optimal_minpts(MinPts)
 
     data_merged = merge_cluster_labels(df, cluster_labels)

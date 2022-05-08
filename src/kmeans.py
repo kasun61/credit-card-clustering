@@ -22,6 +22,9 @@ class kmeans_model:
             kmeans_models: list of KMeans models
         
         """
+
+        print(f'Running KMeans with min_clusters: {min_clusters} and max_clusters: {max_clusters}')
+
         self.kmeans_models = [KMeans(n_clusters=k, random_state=23).fit(self.data) for k in range (min_clusters, max_clusters)]
 
         innertia = [model.inertia_ for model in self.kmeans_models]

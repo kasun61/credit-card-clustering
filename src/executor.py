@@ -7,7 +7,7 @@ from .utility import merge_cluster_labels
 from .dbscan import dbscan_model
 from .kmeans import kmeans_model
 
-def executor(df,model):
+def executor(df,model, max_clusters=None, min_clusters=None, eps=None):
     data_preprocessed = preprocessing(df)
 
     if model == 'kmeans':
@@ -27,14 +27,12 @@ def executor(df,model):
         # define min_points
         MinPts = len(data_preprocessed.columns)*2 # MinPts should follow attributes*2
 
-        # define epsilon
-        eps = 0.1
-
+        # instantiate dbscan model
         dbscan  = dbscan_model(data_preprocessed)
-        cluster_labels, labels = dbscan.dbscan_model(eps, MinPts)
+        cluster_labels, labels = dbscan.dbscan_model(eps=eps, min_samples= MinPts)
         optimal_eps = dbscan.search_optimal_minpts(MinPts)
 
-        data_merged = merge_cluster_labels(df, cluster_labels)
+        data_merged = merge_cluster_labels(data_preprocessed, cluster_labels)
 
     return print(data_merged.head())
 

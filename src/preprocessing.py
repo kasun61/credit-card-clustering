@@ -1,10 +1,21 @@
+### Preprocessing file to clean the data set
+
 import pandas as pd
+from pathlib import Path
 
-from .utility import iqr_outlier_removal, log_transform, impute_median, apply_pca
+from .utility import set_logger, parse_config, iqr_outlier_removal, log_transform, impute_median, apply_pca
 
-def preprocessing (df, n_components=2):
+def preprocessing (data, path="data", n_components=2):
+    """
+    Function to preprocess data
 
-    data = df.set_index(['CUST_ID']) # set index to CUST_ID
+    Args:
+        data (pandas dataframe): dataframe
+
+    Returns:
+        data_pca [pandas dataframe]: dataframe after applying PCA
+    
+    """    
     
     # Imputing missing values with mean
     df_median_imputed = impute_median(data)
@@ -20,11 +31,13 @@ def preprocessing (df, n_components=2):
 
     data_pca, pca = apply_pca(df_without_outliers, n_components)
 
-    data_pca.to_csv("data/data_preprocessed.csv")
+    data_pca.to_csv(Path(path) / "data_preprocessed.csv")
 
     return data_pca
 
 
 if __name__ == "__main__":
-    df = pd.read_csv('data/CC_GENERAL.csv') # read data
-    preprocessing(df,0.95)
+    
+    data = pd.read_csv('data/CC_GENERAL.csv').set_index(['CUST_ID']) # set index to CUST_ID
+
+    preprocessing(data)

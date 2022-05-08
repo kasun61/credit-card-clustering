@@ -1,0 +1,14 @@
+main:
+  data: 'data/CC_GENERAL.csv'
+
+  preprocessing:
+    n_components: 2
+    data: 'data/CC_GENERAL.csv'
+    path: 'data'
+
+  kmeans:
+    max_clusters: 10
+    min_clusters: 1
+
+  dbscan:
+    eps: 0.1
