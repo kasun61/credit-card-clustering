@@ -41,7 +41,11 @@ Execute the files
 ```
 # execute entire pipeline with default model
 python3 main.py
+```
+![main default output](assets/output.png)
 
+Other forms of execution:
+```
 # execute entire pipeline using DBSCAN
 python3 main.py --model=dbscan
 
