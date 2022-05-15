@@ -1,7 +1,7 @@
 # credit-card-clustering
 Credit Card Dataset for Clustering from [Kaggle](https://www.kaggle.com/datasets/arjunbhasin2013/ccdata)
 
-This repository serves as a demo for creating a pipeline to run multiple models in a modularised fashion instead of using linear notebook(s). This implementation of preprocessing, clustering models and evaluation are meant for the purpose of execution, and not achieving the most optimal model accuracy.  
+This repository serves as a demo for creating a pipeline to run multiple models in a modularised fashion instead of using linear notebook(s). The implementation of preprocessing, clustering models and evaluation are meant for the purpose of execution, and not to achieve the optimal model with the highest accuracy.  
 
 ## Repository Structure and Files
 
@@ -10,7 +10,7 @@ This repository serves as a demo for creating a pipeline to run multiple models 
 - [source files](src): source scripts for modules
 - [main pipeline](main.py): run this script to execute the entire clustering pipeline. See below on usage.
 - [dependencies](requirements.txt): install the dependencies into your environment to replicate it. See below on installation.
-- [Configurations](config.yml): Default configurations are stored in this yaml file. To run the pipeline with customised configurations, simply spin up a new yaml file with your configs and run the pipeline accordingly. See below on usage
+- [configurations](config.yml): Default configurations are stored in this yaml file. To run the pipeline with customised configurations, simply spin up a new yaml file with your configs and run the pipeline accordingly. See below on usage
 
 ## Pipeline
 
