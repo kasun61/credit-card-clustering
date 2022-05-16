@@ -16,6 +16,7 @@ entrypoints==0.4
 executing==0.8.3
 fastjsonschema==2.15.3
 fonttools==4.33.3
+iniconfig==1.1.1
 ipykernel==6.13.0
 ipython==8.2.0
 ipython-genutils==0.2.0
@@ -49,15 +50,18 @@ parso==0.8.3
 pexpect==4.8.0
 pickleshare==0.7.5
 Pillow==9.1.0
+pluggy==1.0.0
 prometheus-client==0.14.1
 prompt-toolkit==3.0.29
 psutil==5.9.0
 ptyprocess==0.7.0
 pure-eval==0.2.2
+py==1.11.0
 pycparser==2.21
 Pygments==2.12.0
 pyparsing==3.0.8
 pyrsistent==0.18.1
+pytest==7.1.2
 python-dateutil==2.8.2
 pytz==2022.1
 PyYAML==6.0
@@ -75,6 +79,7 @@ stack-data==0.2.0
 terminado==0.13.3
 threadpoolctl==3.1.0
 tinycss2==1.1.1
+tomli==2.0.1
 tornado==6.1
 traitlets==5.1.1
 wcwidth==0.2.5
